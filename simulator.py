@@ -1,4 +1,3 @@
-import matplotlib
 import numpy as np
 
 # np.random.seed(42)
@@ -33,7 +32,7 @@ def simulator(initial_states: list, beta: float, gamma: float, end_time: int, n_
     states = np.array(initial_states)
     pop = np.sum(states)
     result = np.zeros(shape=(n_periods + 1, 3))
-    t = end_time / periods
+    t = end_time / n_periods
     i = 1
     for j in range(0, 3):
         result[0][j] = states[j]
@@ -83,12 +82,5 @@ def simulator(initial_states: list, beta: float, gamma: float, end_time: int, n_
     for row in result:
         if (row == 0).all():
             row[:] = states[:]
-    print('the time the model ran was: ', time)
     return result
 
-
-# maximum time until one simulation can run
-end = 50
-# number of periods
-periods = 25
-print(simulator(initial_states=[Susc, Inf, Rec], beta=b, gamma=g, end_time=end, n_periods=periods))
